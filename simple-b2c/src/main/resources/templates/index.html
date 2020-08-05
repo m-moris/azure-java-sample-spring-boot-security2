@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/webjars/bulma/0.9.0/css/bulma.min.css}" />
+</head>
+
+<body>
+    <div class="container is-fluid" style="padding-top:3rem">
+        <div class="columns">
+            <h3 class="title">Spring boot oauth2 sample application with AAD/AADB2C.</h3>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <div class="columns">
+                <div class="column">
+                    Logged inn
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column">
+                    Hi <span th:text="${#authentication.name}"></span> san!
+              </div>
+            </div>
+            <div class="columns">
+                <div class="column is-2">
+                    <a href="/logout" class="button is-info">Logout (GET)</a>
+                </div>
+                <div class="column is-2">
+                    <form th:action="@{/logout}" method="post">
+                        <button class="button is-primary" type="submit">Logout (POST)</button>
+                    </form>
+                </div>
+
+                <logout/>
+            </div>
+
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <div sec:authorize="isAnonymous()">
+                    <div class="controll">
+                        <a class="button is-primary" href="/login">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

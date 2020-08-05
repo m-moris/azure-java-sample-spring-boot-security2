@@ -1,0 +1,21 @@
+logging:
+  level:
+    org.springframework: INFO
+server:
+  port: 8080
+spring:
+  devtools:
+    add-properties: true
+azure:
+  activedirectory:
+    b2c:
+      tenant: <<your tenant name>>
+      oidc-enabled: true
+      client-id: <<client id>>
+      client-secret: <<client secret>>
+      reply-url: http://localhost:8080/home
+      logout-success-url: http://localhost:8080/logout
+      user-flows:
+        sign-up-or-sign-in: <<sign in flow name>>
+        profile-edit: <<profile edit flow name>>
+        password-reset: <<password reset flow name>.

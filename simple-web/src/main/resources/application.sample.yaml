@@ -1,0 +1,49 @@
+logging:
+  level:
+    com.azure.storage : INFO
+    org.springframework: INFO
+    org.thymeleaf: INFO
+server:
+  port: 8080
+spring:
+  devtools:
+    add-properties: true
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+        # Azure Active Directory
+          azuread:
+            client-id: <<aad client id>>
+            client-secret : <<aad client secret>>
+            client-name: Azure Active Directory
+            scope: 
+            - profile
+            client-authentication-method: post
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/azuread
+        # B2C
+          azureadb2c:
+            client-id: <<b2c client id>>
+            client-secret : <<b2c client secret>>
+            client-name: Azure Active Directory B2C
+            scope: 
+            - openid
+            - <<b2c client id>>
+            client-authentication-method: post
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/azureadb2c
+        provider:
+          azuread:
+            token-uri: https://login.microsoftonline.com/<<aad tenant id>>/oauth2/token
+            authorization-uri: https://login.microsoftonline.com/<<aad tenant id>>/oauth2/authorize
+            user-info-uri: https://graph.windows.net/me?api-version=1.6
+            user-name-attribute: displayName
+          azureadb2c:
+            token-uri: https://<<b2c tenant name>>.b2clogin.com/morisb2c.onmicrosoft.com/<<user flow name>>n/oauth2/v2.0/token
+            authorization-uri: https://<<b2c tenant name>>.b2clogin.com/morisb2c.onmicrosoft.com/<<user flow name>>/oauth2/v2.0/authorize
+            user-name-attribute: name
+            jwk-set-uri: https://<<b2c tenant name>>.b2clogin.com/morisb2c.onmicrosoft.com/<<user flow name>>/discovery/v2.0/keys
+
