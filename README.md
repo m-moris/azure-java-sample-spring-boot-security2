@@ -170,7 +170,7 @@ azure:
 |tenant| テナント名 |
 |client-id | クライアントID  |
 |client-secret | クライアントシークレット |
-||sign-up-or-sign-in|サインインユーザーフロー名 | 
+|sign-up-or-sign-in|サインインユーザーフロー名 | 
 |profile-edit|ユーザープロファイル編集のフロー名（任意|
 |password-reset|パスワードリセットのフロー名（任意|
 
